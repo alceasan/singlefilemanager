@@ -1,15 +1,15 @@
 services:
-  tinyfilemanager:
+  singlefilemanager:
     build: .                                            # Uncomment if you want to build locally instead of pulling
-#    image: tinyfilemanager/tinyfilemanager:latest      ###  If you want to run a Docker container on an image from Docker Hub, comment on the upper line 'build: .'
-    container_name: tinyfilemanager
+#    image: ghcr.io/alceasan/singlefilemanager:latest   ###  If you want to run a Docker container from a registry, comment out 'build: .'
+    container_name: singlefilemanager
     restart: unless-stopped
     ports:
-      - "8080:80"                               
+      - "8080:80"
     volumes:
-      - ./data:/var/www/html/data                       ### You can change "./data:" to your path if you want to keep your data in a dedicated directory.  
-      - ./config.php:/var/www/html/config.php           ### Uncomment if you are using config.php
-   
+      - ./data:/var/www/html/data                       ### Replace "./data" with your persistent storage path if needed.
+      - ./config.php:/var/www/html/config.php           ### Recommended: copy config.sample.php to config.php and keep it outside the image.
+
     environment:
       TZ: UTC
 

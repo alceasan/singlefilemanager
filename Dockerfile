@@ -1,13 +1,13 @@
 # how to build?
 # docker login
 ## .....input your docker id and password
-#docker build . -t tinyfilemanager/tinyfilemanager:master
-#docker push tinyfilemanager/tinyfilemanager:master
+#docker build . -t singlefilemanager:latest
+#docker push your-registry/singlefilemanager:latest
 
 # how to use?
-# docker run -d -v /absolute/path:/var/www/html/data -p 80:80 --restart=always --name tinyfilemanager tinyfilemanager/tinyfilemanager:master
+# docker run -d -v /absolute/path:/var/www/html/data -p 80:80 --restart=always --name singlefilemanager singlefilemanager:latest
 
-FROM php:7.4-cli-alpine
+FROM php:8.4-cli-alpine
 
 # if run in China
 # RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
@@ -21,6 +21,6 @@ RUN docker-php-ext-install \
 
 WORKDIR /var/www/html
 
-COPY tinyfilemanager.php index.php
+COPY simplefilemanager.php index.php
 
 CMD ["sh", "-c", "php -S 0.0.0.0:80"]
