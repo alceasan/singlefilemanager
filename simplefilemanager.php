@@ -3,7 +3,7 @@
 $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":false,"theme":"light"}';
 
 /**
- * Single File Manager V1.0
+ * Single File Manager V1.0.0
  * Fork of Tiny File Manager
  * @author CCP Programmers
  * @github https://github.com/alceasan/singlefilemanager
@@ -11,7 +11,7 @@ $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":
  */
 
 //TFM version
-define('VERSION', '1.0');
+define('VERSION', '1.0.0');
 
 //Application Title
 define('APP_TITLE', 'Single File Manager');
