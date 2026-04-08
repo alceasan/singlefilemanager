@@ -20,6 +20,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Validate release version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          APP_VERSION="$(sed -n \"s/define('VERSION', '\\([^']*\\)').*/\\1/p\" simplefilemanager.php | head -n 1)"
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ -z "$APP_VERSION" ]; then
+            echo "Could not determine VERSION from simplefilemanager.php"
+            exit 1
+          fi
+          if [ "$APP_VERSION" != "$TAG_VERSION" ]; then
+            echo "VERSION mismatch: simplefilemanager.php has '$APP_VERSION' but the git tag is '$TAG_VERSION'"
+            exit 1
+          fi
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v6
